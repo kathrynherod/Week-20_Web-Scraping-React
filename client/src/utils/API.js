@@ -1,20 +1,28 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
+  // Gets all Articles from DB
+  getArticles: function() {
+    return axios.get("/api/articles");
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  // Queries Articles
+  searchArticle: function(query, begin, end) {
+    return axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {
+      params: {
+        'api-key': "7e989fab4dfe40ab9a68b494a64c7fd3",
+        'q': query,
+        'begin_date': begin,
+        'end_date': end
+      }
+    });
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  // Deletes the Article with the given id
+  deleteArticle: function(id) {
+    return axios.delete("/api/articles/" + id);
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  // Saves a Article to the database
+  saveArticle: function(articleData) {
+    console.log("ARTICLE SAVED", articleData);
+    return axios.post("/api/articles", articleData);
   }
 };

@@ -1,14 +1,15 @@
 {
-  "name": "Week-20-HW",
+  "name": "Week-20_ReactNYT",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
-    "client": "node scripts/start-client.js",
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
-    "build": "node scripts/build.js",
-    "seed": "node scripts/seedDB.js",
+    "client": "cd client && npm run start",
+    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
+    "build": "cd client && npm run build",
+    "deploy": "npm run build && git add . && git commit -m \"Building for production\" && git push heroku master",
+    "seed": "node scripts/seedDB",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kathryn Herod",
