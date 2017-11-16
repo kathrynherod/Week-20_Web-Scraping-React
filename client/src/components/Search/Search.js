@@ -41,6 +41,7 @@ class Search extends Component {
   handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get articles and update the articles state
     event.preventDefault();
+
     API.searchArticle(this.state.topic, this.state.startyear, this.state.endyear)
       // .then(res => console.log("HANDLEFORMSUBMIT RESULTS IN SEARCH.JS", res.data.response.docs))
       .then(res => this.setState({ articles: res.data.response.docs, topic: "", startyear: "", endyear: "", searchClicked: true }))
@@ -64,7 +65,7 @@ class Search extends Component {
                   value={this.state.topic}
                   onChange={this.handleInputChange}
                   name="topic"
-                  placeholder="Topic (required)"
+                  placeholder="Search Topic (required)"
                 />
                 <Input
                   value={this.state.startyear}
