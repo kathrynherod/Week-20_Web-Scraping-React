@@ -12,13 +12,13 @@ export default {
   searchArticle: function (query, begin, end) {
     console.log(query, begin, end)  
     var queryURL = queryURLBase + query;
-
+    
       // If the user provides a startYear -- the startYear will be included in the queryURL
-    if (parseInt(begin)) {
+    if (begin) {
       queryURL = queryURL + "&begin_date=" + begin + "0101";
     }
     // If the user provides a startYear -- the endYear will be included in the queryURL
-    if (parseInt(end)) {
+    if (end) {
       queryURL = queryURL + "&end_date=" + end + "0101";
     }
       
