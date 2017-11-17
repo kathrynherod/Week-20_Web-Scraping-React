@@ -52,81 +52,44 @@ class Search extends Component {
 
 
   render() {
-    return (
-      <Container>
-        <Container fluid>
-          <Row>
-            <Col size="md-12">
+    return <Container>
+			<Container fluid>
+				<Row>
+					<Col size="md-12">
+						<h1>Search</h1>
 
-                <h1>Search</h1>
+						<form>
+							<Input value={this.state.topic} onChange={this.handleInputChange} name="topic" placeholder="Search Topic (required)" />
+							<Input value={this.state.startyear} onChange={this.handleInputChange} name="startyear" placeholder="2000" />
+							<Input value={this.state.endyear} onChange={this.handleInputChange} name="endyear" placeholder="2017" />
 
-              <form>
-                <Input
-                  value={this.state.topic}
-                  onChange={this.handleInputChange}
-                  name="topic"
-                  placeholder="Search Topic (required)"
-                />
-                <Input
-                  value={this.state.startyear}
-                  onChange={this.handleInputChange}
-                  name="startyear"
-                  placeholder="2000"
-                />
-                <Input
-                  value={this.state.endyear}
-                  onChange={this.handleInputChange}
-                  name="endyear"
-                  placeholder="2017"
-                />
-
-                <FormBtn
-                  disabled={!(this.state.topic && this.state.startyear && this.state.endyear)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Find Articles
-                </FormBtn>
-              </form>
-              </Col>
-              </Row>
-
-            </Container>
-            <Container fluid>
-              <Row>
-                <Col size="md-12">
-                 {this.state.articles.length ? (
-                  <div>
-                    <h2>Search Results</h2>
-                    <List>
-                      {this.state.articles.map(article => (
-
-                        <ListItem key={article._id}>
-                        <Link target="_blank" to={article.web_url}>
-                          <strong>
-                            {article.headline.main}
-                          </strong>
-                        </Link>
-                        <br />
-                          {article.pub_date}
-                          <SaveBtn onClick={() => this.saveArticle({article})} />
-
-                        </ListItem>
-                      ))}
-                    </List>
-                  </div>
-                ) : (
-                  <h3>{this.state.searchClicked ? (
-                    "No Results Found"
-                  ) : (
-                    ""
-                  )} </h3>
-                )}
-            </Col>
-          </Row>
-        </Container>
-
-      </Container>
-    );
+							<FormBtn disabled={!(this.state.topic && this.state.startyear && this.state.endyear)} onClick={this.handleFormSubmit}>
+								Find Articles
+							</FormBtn>
+						</form>
+					</Col>
+				</Row>
+			</Container>
+			<Container fluid>
+				<Row>
+					<Col size="md-12">
+						{this.state.articles.length ? <div>
+								<h2>Search Results</h2>
+								<List>
+									{this.state.articles.map(article => <ListItem key={article._id}>
+											<Link target="_blank" to={article.web_url}>
+												<strong>{article.headline.main}</strong>
+											</Link>
+											<br />
+											{article.pub_date.substring(0, 10)}
+											<SaveBtn onClick={() => this.saveArticle({ article })} />
+										</ListItem>)}
+								</List>
+							</div> : <h3>{this.state.searchClicked ? 'No Results Found' : ''} </h3>}
+					</Col>
+				</Row>
+			</Container>
+		</Container>;
   }
 }
 

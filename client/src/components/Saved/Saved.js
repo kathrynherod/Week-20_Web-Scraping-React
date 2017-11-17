@@ -29,38 +29,28 @@ class Saved extends Component {
       .catch(err => console.log(err));
   };
 
+
+
   render() {
-    return (
-      <Container>
-        <Container fluid>
-          <Row>
-            <Col size="md-12">
-              <h1>Saved Articles</h1>
-               {this.state.articles.length ? (
-                <List>
-                  {this.state.articles.map(article => (
-                    <ListItem key={article._id}>
-                      <Link target="_blank" to={article.url}>
-                      <strong>
-                        {article.title}
-                      </strong>
-                      </Link>
-                      <br />
-                        {article.date}
-
-                      <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
-                    </ListItem>
-                  ))}
-                </List>
-              ) : (
-                <h3>No Articles Saved! Search for and save articles above</h3>
-              )}
-            </Col>
-          </Row>
-        </Container>
-      </Container>
-
-    );
+    return <Container>
+			<Container fluid>
+				<Row>
+					<Col size="md-12">
+						<h1>Saved Articles</h1>
+						{this.state.articles.length ? <List>
+								{this.state.articles.map(article => <ListItem key={article._id}>
+										<Link target="_blank" to={article.url}>
+											<strong>{article.title}</strong>
+										</Link>
+										<br />
+										Saved on {article.date.substring(0, 10)}
+										<DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+									</ListItem>)}
+							</List> : <h3>No Articles Saved! Search for and save articles above</h3>}
+					</Col>
+				</Row>
+			</Container>
+		</Container>;
   }
 }
 
